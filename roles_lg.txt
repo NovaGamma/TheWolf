@@ -1,0 +1,25 @@
+roles lg :
+
+VILLAGE
+simple villageois
+cupidon
+petite fille
+sorcière
+voyante
+chasseur
+gardien : ~garde
+
+complice : ~soeurs : villageois qui se connaissent et peuvent parler ensemble sur channel privé. Ils savent donc qu'ils sont tous 2 safe
+pirate : chaque nuit il a la possibilité de prendre en otage un joueur (1 par partie). S'il meurt, l'otage meurt avec lui
+detective : il choisit 2 roles et sait s'ils sont dans le même camp (a voir pour la frequence d'action du pouvoir)
+montreur d'ours : comment le representé ?
+
+LOUPS
+loup garou
+loup bavard : difficulté des mots augmente avec les tours
+loup timide
+loup noir
+
+ROLES SOLITAIRES
+loup blanc
+pangolin : ~rat malade

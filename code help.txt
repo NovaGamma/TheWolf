@@ -1,0 +1,18 @@
+in game.channels list
+index:
+0 = village
+from 1 to 5, channels that are called in order during the night, some with special restrictions
+1 = cupidon only the first turn
+2 = voyante
+3 = wolves
+4 = black wolf only if there isn't an infected yet
+4 = white wolf only when turn%2  = 0
+5 = witch
+then channels that might be called under certain restrictions
+6 = hunter
+7 = lovers
+
+
+in class Game
+
+for the turn if turn%2 = 0 -> day if = 1 -> night
