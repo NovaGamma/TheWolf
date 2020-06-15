@@ -6,7 +6,7 @@ class Player():
         self.member = member
         self.role = None
         self.game = None
-        self.vote = None #varaible that store the person for who the player is voting for
+        self.vote = None #variable that store the person for who the player is voting for
         self.voted = 0 #variable that keep the number of vote a person has against her
 
     async def addRole(self,role):
@@ -95,6 +95,7 @@ class Game():
         while self.time > 1:
             await asyncio.sleep(1)
             self.time-=1
+            await self.display_vote()
         mostVoted = [self.alives[0]]
         for player in self.alives:
             if player.voted > mostVoted[0]:
@@ -108,6 +109,16 @@ class Game():
             await self.channels[0].send("You have chosen to kill "+mostVoted[0].member.mention)
             await self.kill(mostVoted[0])
 
+    async def display_vote(self):
+        text = 'Current state :\n'
+        n=0
+        for alive in self.alives:
+            n+=1
+            if n<5:
+                text+=alive.member.display_name+' '+ str(alive.voted)+' | '
+            else:
+                text+='\n'+alive.member.display_name+' '+ str(alive.voted)+' | '
+                n=0
 
 
     async def addMayor(self,user):
@@ -148,6 +159,20 @@ async def gameMessage(message,game):#function that treat the incomming messages 
     if message.content.startswith("Start Game"):
         if message.channel.id == game.channels[0].id:
             await game.start()
+
+    if game.state == 'day':
+        if len(message.mentions) == 1:
+            mention = message.mentions[0]#the user corresponding to the player which is voted against
+            for alive in game.alives:
+                if alive.member.id == message.author.id:
+                    alive.vote.voted -= 1
+                    for vote in self.game.alives: #getting the player that is being voted against
+                        if vote.member.id == mention.id:
+                            vote.voted +=1
+                            alive.vote = vote
+                    await message.delete()
+                    return#used as a break here
+
 
 async def gameReaction(reaction,user,game):
     if game.state == 'election':
@@ -256,5 +281,3 @@ async def on_reaction_remove(reaction,user):
 
 Games = []
 time = 0
-
-client.run('NzE5NjUxNjc3MzU5MDQ2NzE3.XucuKg.3nuJlhSxDz1FSKwOGPIjMYMPTPQ')
