@@ -22,6 +22,8 @@ class Game():
     async def createGame(self,creator):
         self.creator = None
         self.participants = []
+        self.alives = []
+        self.dead = []
         self.guild = Guild
         self.channels = []
         overwrite = {self.guild.default_role:discord.PermissionOverwrite(read_messages = False)}
@@ -47,6 +49,7 @@ class Game():
         if creator:
             self.creator = participant
         self.participants.append(participant)
+        self.alives.append(participant)
         await self.channels[0].set_permissions(participant.member,read_messages = True)
 
     async def removePeople(self,player):
@@ -60,6 +63,12 @@ class Game():
             self.creator = self.participants[0]
         await self.channels[0].set_permissions(player,read_messages = False)
         await self.entry.remove_reaction("✅",player)
+
+    async def kill(self,player):#receive the player that have been killed, either by the village or during the night
+        self.alives.remove(player)
+        self.dead.append(player)
+        await self.gameCategory.set_permissions(player,send_messages = False)
+        #dont forget to activate the role at the death for hunter as example
 
     async def start(self):#main function of the game that coordinates all the different parts such as the calling of the day, the night, distribution of roles etc
         self.turn = 1#setting the night for the first turn of the game
@@ -86,10 +95,19 @@ class Game():
         while self.time > 1:
             await asyncio.sleep(1)
             self.time-=1
-        mostVoted = self.participants[0]
-        for participant in self.participants:
-            if participant.voted > mostVoted:
-                mostVoted = participant
+        mostVoted = [self.alives[0]]
+        for player in self.alives:
+            if player.voted > mostVoted[0]:
+                for i in range(len(mostVoted)):
+                    mostVoted[i] = player
+            elif player.voted == mostVoted[0]:
+                mostVoted.append(particpant)
+        if len(mostVoted) > 1:#mean that some people have an equal number of vote against them
+            pass
+        else:
+            await self.channels[0].send("You have chosen to kill "+mostVoted[0].member.mention)
+            await self.kill(mostVoted[0])
+
 
 
     async def addMayor(self,user):
@@ -216,7 +234,7 @@ async def on_reaction_add(reaction,user):
         await game.addPeople(user)
 
     for game in Games:#part that will check if the received message belong to a message sent in a game to be treated by a dedicated function
-        if message.channel.category.id == game.gameCategory.id:
+        if reaction.message.channel.category.id == game.gameCategory.id:
             await gameReaction(reaction,user,game)
 
 @client.event
@@ -233,10 +251,10 @@ async def on_reaction_remove(reaction,user):
         await game.removePeople(user)
 
     for game in Games:#part that will check if the received message belong to a message sent in a game to be treated by a dedicated function
-        if message.channel.category.id == game.gameCategory.id:
+        if reaction.message.channel.category.id == game.gameCategory.id:
             await gameReaction(reaction,user,game)
 
 Games = []
 time = 0
 
-client.run('NzE5NjUxNjc3MzU5MDQ2NzE3.Xt6h4Q.8NNZxuQoR35y4baULxJ8LgmfYHM')
+client.run('NzE5NjUxNjc3MzU5MDQ2NzE3.XucuKg.3nuJlhSxDz1FSKwOGPIjMYMPTPQ')
