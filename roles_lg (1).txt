@@ -24,7 +24,7 @@ ancien du village : peut, une fois dans la partie, donner 1 vie supplementaire a
 idiot du village : s'il se fait eliminer au vote, il survit (la premiere fois) et perd alors son pouvoirs de vote (il peut cependant encore debatre). Il obtient une immunité contre les lg et le lb lors de la nuit suivant sa mort. L'interet est qu'une fois devoilé, c'est une personne de confiance.
 influenceur des loup : Chaque nuit, il se reveille avant la sorcière et voit la victime des lg. C'est utile en cas d'action du gardien ou de la soso. Si les lg n'ont visés personne ou que la victime a été infecté il ne se reveille pas. De plus, une fois dans la partie il peut dévier leur vote vers un autre joueur.
 enfant sauvage
-homme a l'épé rouillée : lorsqu'il meurt, un lg meurt aleatoirement (quand on l'ajoute il faut donc ajouter un lg pour équilibrer la partie)
+homme a l'épée rouillée : lorsqu'il meurt, un lg meurt aleatoirement (quand on l'ajoute il faut donc ajouter un lg pour équilibrer la partie)
 
 LOUPS
 loup garou

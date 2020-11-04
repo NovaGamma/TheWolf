@@ -1,0 +1,37 @@
+Petite introduction au classes (programmation objet) pour commencer
+dans une class vous créez des objects qui ont des variables associés  vous pouvez regarder dans le fichier roles.py pour avoir un apercu
+vous pouvez y accéder dans une fonction de classe avec self.nomDeLaVariable
+la fonction __init__(self,...) est la fonction permettant la création de la class elle est NECESSAIRE
+et c'est dedans que vous allez initialiser les variables de votre object (ici le rôle, mais pour vous ce sera seulement si il y a des variables spéciales)
+
+
+Du coup petite documentation pour l'implémentation de nouveau rôles pour le loup-garou,
+
+En utilisant la class Role de base qui permet de contenir le nom, l'équipe, la partie, les joueurs et le salon correspondant à un rôle, auquel on rajoute des foncionnalités en créant une sous-classe avec :
+
+class nomRole(Role): ici le nom du role avec une majuscule au début
+	def __init__(self):
+	Role.__init__(self,name = 'nomRole',team = numéroTeam) ici le nom du role en minuscules uniquement
+
+Pour le numéro de la team (équipe) se référer au "tableau" en dessous
+teams : 0 -> village
+		1 -> wolves (loups)
+		2 -> solo / like white wolf (not the witch) / comme le loup-blanc, équipe de victoire et non pas d'action
+		on peut rajouter des numéro si il y a d'autres rôles qui gagnent en équipe, et je vais voir pour rajouter correctement plusieurs conditions de victoire, genre pour les amoureux qui peuvent gagner soit avec le village soit tout seuls
+
+ensuite pour rajouter des fonctionnalités ce sera presque uniquement une fonctione :
+	
+	async def activateRole(self):  qui met en place l'activation du rôle (nom a respecter car utiliser peut importe le rôle)
+		ici vous metter ce que vous voulez que le rôle fasse
+
+comme fonctions intégrées vous avez le vote :
+	syntaxe : await vote(time = ^,participants = ^,channel =^,text = ^) qui renvoit le résultat sous la forme d'une liste [1,resultat] ou [0,resultat], où 1 correspond au fait que il y a eu égalité et resultat est un liste des Player (voir la docu sur la class Player) étant à égalité, et pour 0 c'est un seul Player qui est à la place de résultat
+	donc pour récupérer le resultat :
+		resultat = await vote(...)
+
+	maintenant pour les paramètres de la fonction vote
+		time est le temps, en secondes entières uniquement (pas de 1.0)
+		participants est la liste des participants au vote (ceux qui peuvent voter), qui est une liste de Players (souvent correspondante à self.players)
+		channel est le salon dans lequel le bot va faire le vote, souvent self.channel
+		et text est le texte qui sera envoyé comme descriptif du vote dans le channel donné avant
+

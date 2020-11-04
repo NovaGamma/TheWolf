@@ -1,18 +1,39 @@
 in game.channels list
 index:
 0 = village
-from 1 to 5, channels that are called in order during the night, some with special restrictions
+from 1 to 6, channels that are called in order during the night, some with special restrictions
 1 = cupidon only the first turn
 2 = voyante
 3 = wolves
 4 = black wolf only if there isn't an infected yet
-4 = white wolf only when turn%2  = 0
-5 = witch
+5 = white wolf only when turn%2  = 0
+6 = witch
 then channels that might be called under certain restrictions
-6 = hunter
-7 = lovers
+7 = hunter
+8 = lovers
 
 
 in class Game
 
+guildRoles index : 0 -> alive / 1 -> dead / 2 -> spectator
+alive id : 722171265372258378
+dead id : 722171307034148972
+spec id : 722171324293841020
+
 for the turn if turn%2 = 0 -> day if = 1 -> night
+states :
+	'day' : for the vote part of the day
+	'night' ? 
+	'election' election of the mayor
+
+in class Role
+
+teams : 0 -> village
+		1 -> wolves
+		2 -> solo like white wolf (not the witch)
+		can continue for more roles that have teams
+can activate a variable in self.player that contains if the player is in love with someone else (to check for victory)
+
+activations : death (for hunter or others)
+			  night (for most of them)
+			  day (for the talking wolf especially)

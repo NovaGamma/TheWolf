@@ -1,0 +1,19 @@
+Docu class Player
+
+Ici l'explication de la classe Player créant les object correspondant au joueurs dans une partie
+
+class Player():
+    def __init__(self,member):
+        self.member = member #l'objet discord du membre discord correpondant
+        self.role = None #le role que le joueur à en partie (correspondant en vrai au nom du role)
+        sefl.guildRole = 'None' #le role que le joueur à dans le serveur (alive,dead,spec) / (vivant,mort,spec)
+        self.game = None #l'objet de class Game contenant la game dans laquelle le joueur est
+        self.vote = None #variable qui stock le joueur pour qui ce joueur a voté contre
+        self.voted = 0 #variable qui stock le nombre de vote que le joueur a contre lui
+
+    async def addRole(self,role): #fonction qui affecte les permissions au joueur (pas d'implication pour vous)
+        self.role = role
+        for channel in self.game.channels:
+            if channel.name == self.role:
+                await channel.set_permissions(self.member,read_messages = True)
+
