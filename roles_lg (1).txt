@@ -7,33 +7,35 @@ petite fille
 sorcière
 voyante
 chasseur
-gardien : ~garde
-devin : ~menta
-pyromancien
-necromancien : les lg ne peuvent pas voir ses messages (dans wolfy c'est pas le cas et il se fait balancer par les lg morts)
-fossoyeur
-dictateur
-chaperon rouge : ne peut pas etre choisit si pas de chasseur
-complice : ~soeurs : villageois qui se connaissent et peuvent parler ensemble sur channel privé. Ils savent donc qu'ils sont tous 2 safe
+gardien : ~garde : chaque nuit peut protéger une personne des loups, ne peut pas protéger deux fois de suite la meme personne. Peut se protéger soi-même.
+devin : ~menta (?)
+pyromancien : (Villageois ou solitaire) Chaque nuit, le pyromancien a le choix entre entreposer un tonneau de feu grégeois chez un joueur, ou déclencher leur explosion.
+necromancien : Peut chaque nuit parler aux morts, les lg ne peuvent pas voir ses messages (dans wolfy c'est pas le cas et il se fait balancer par les lg morts) 
+fossoyeur : Une fois par partie, peut échanger sa carte avec un joueur décédé (les pouvoirs sont remis à 0)
+dictateur : Une fois par partie, peut décider de faire un coup d'Etat : à la place du vote du village, il choisit seul de tuer quelqu'un. Si villageois, le dictateur meurt        la nuit suivante, si ennemi, le dictateur devient maire.
+chaperon rouge : Ne peut pas être tuée par les loups tant que le chasseur est en vie, ne peut pas être dans une partie sans chasseur
+complice : ~soeurs : 2 villageois qui se connaissent et peuvent parler ensemble sur channel privé. Ils savent donc qu'ils sont tous 2 safe
 pirate : chaque nuit il a la possibilité de prendre en otage un joueur (1 par partie). S'il meurt, l'otage meurt avec lui
-detective : il choisit 2 roles et sait s'ils sont dans le même camp (a voir pour la frequence d'action du pouvoir)
-montreur d'ours : comment le representé ?
-renard : chaque nuit il peut choisir de designer 3 joueurs, et sera alors averti de la presence ou non d'au moins un lg dans le trio. S'il n'y a pas de lg, il perd son pouvoir
-corbeau : chaque nuit il peut designer 1 personne qui aura alors 2 votes contre elle lors du vote. Le village en est averti au levé du soleil. (pour les parties <10 joueurs, on peut dire 1 vote plutot que 2)
-ancien du village : peut, une fois dans la partie, donner 1 vie supplementaire a un joueur qui n'en sera averti qu'a sa mort (il survivra donc)
-idiot du village : s'il se fait eliminer au vote, il survit (la premiere fois) et perd alors son pouvoirs de vote (il peut cependant encore debatre). Il obtient une immunité contre les lg et le lb lors de la nuit suivant sa mort. L'interet est qu'une fois devoilé, c'est une personne de confiance.
-influenceur des loup : Chaque nuit, il se reveille avant la sorcière et voit la victime des lg. C'est utile en cas d'action du gardien ou de la soso. Si les lg n'ont visés personne ou que la victime a été infecté il ne se reveille pas. De plus, une fois dans la partie il peut dévier leur vote vers un autre joueur.
-enfant sauvage
-homme a l'épée rouillée : lorsqu'il meurt, un lg meurt aleatoirement (quand on l'ajoute il faut donc ajouter un lg pour équilibrer la partie)
+détective : il choisit 2 personnes et sait s'ils sont dans le même camp (a voir pour la frequence d'action du pouvoir) (peut il se choisir lui même?)
+montreur d'ours : chaque tour au réveil du village (après les morts), l'ours grogne si un loup se trouve à coté du montreur d'ours (1 numéro/personne --> numéro adjacent)
+renard : chaque nuit il peut choisir de désigner 3 joueurs, et sera alors averti de la présence ou non d'au moins un lg dans le trio. S'il n'y a pas de lg, il perd son pouvoir
+corbeau : chaque nuit il peut désigner 1 personne qui aura alors 2 votes contre elle lors du vote. Le village en est averti au levé du soleil. (pour les parties <10 joueurs, on peut dire 1 vote plutôt que 2)
+ancien du village : peut, une fois dans la partie, donner 1 vie supplémentaire à un joueur qui n'en sera averti qu'à sa mort (il survivra donc)
+idiot du village : s'il se fait éliminer au vote, il survit (la première fois) et perd alors son pouvoir de vote (il peut cependant encore débattre). Il obtient une immunité     contre les lg et le lb lors de la nuit suivant sa mort. L'intérêt est qu'une fois dévoilé, c'est une personne de confiance.
+influenceur des loup : Chaque nuit, il se reveille avant la sorcière et voit la victime des lg. C'est utile en cas d'action du gardien ou de la soso. Si les lg n'ont visé     personne ou que la victime a été infectée il ne se réveille pas. De plus, une fois dans la partie il peut dévier leur vote vers un autre joueur.
+enfant sauvage : au début de la partie, est villageois et choisit une personne comme modèle. Lorsque ce modèle meurt, l'enfant sauvage devient lg.
+homme a l'épée rouillée : lorsqu'il meurt à cause des lg, un lg meurt aléatoirement (quand on l'ajoute il faut donc ajouter un lg pour équilibrer la partie)
 
 LOUPS
 loup garou
-loup bavard : difficulté des mots augmente avec les tours (faudrait faire une liste de mots)
-loup timide
-loup noir
+loup bavard : Chaque matin, se voit attribuer un mot à placer dans la conversation. Si le loup ne place pas le mot dans une de ses phrases il mourra la nuit suivant, la          difficulté des mots augmente avec les tours (faudrait faire une liste de mots)
+loup timide (?)
+loup noir : une fois dans la partie, peut infecter la victime désignée par les loups pour qu'elle devienne lg. La victime conserve ses pouvoirs d'antan. 
 
 ROLES SOLITAIRES
-loup blanc
-pangolin : ~rat malade
-ange : a pour objectif de se faire tuer au premier tour de vote
-sectaire : au debut de la partie, on lui attribut un groupe de joueurs (je dirais 2/3 du nombre de joueurs total) choisis aleatoirements. Son objectif est de les éliminer tous, sans se faire repérer
+loup blanc : doit gagner seul. Se réveille avec les lg toutes les nuits. Une nuit sur deux se réveille seul et peut choisir une seconde victime qui peut etre un lg. Ne gagne     pas avec les lg
+pangolin : ~rat malade : chaque nuit contamine deux joueurs, gagne seul lorsque tous les joueurs vivants sont infectés.
+ange : a pour objectif de se faire tuer au premier tour de vote. Sa victoire met fin a la partie, avec une defaite de tous les autres
+sectaire : au début de la partie, on lui attribue un groupe de joueurs (je dirais 2/3 du nombre de joueurs total) choisis aleatoirements. Son objectif est de les éliminer tous, sans se faire repérer --> ca m'a l'air impossible à gagner
+sectaire V2 : au début de la partie, on lui attribue une cible. Cette cible fait partie du village. Le sectaire doit faire éliminer cette cible durant un vote du village. Sa     victoire ne met pas fin à la partie
+Ange Gardien : au début de la partie se voit attribuer un protégé. Le protégé doit survivre jusqu'à la fin de la partie (peu importe si le protégé gagne ou pas). L'Ange Gardien peut protéger sa cible 1 ou 2 fois dans la partie, elle sera annoncée au début de la journée suivante("XXX a été protégé par son Ange Gardien") et ne pourra être                tuée ni la nuit de la sélection ni par le vote du village de la journée suivante. L'ange Gardien peut gagner et utiliser ses pouvoirs même lorsqu'il est mort. Sa                 cible peut avoir n'importe quel rôle. Peut gagner lors d'une victoire avec un autre solitaire (Ange, pangolin...).
