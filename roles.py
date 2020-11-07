@@ -1,7 +1,7 @@
-from vote import*
+from TheWolf.vote import*
 
 class Role():#will be inside a Player inside a Game, so have access to the game and the participant
-    def __init__(self,name,team,game = None,players = [],activation = None):
+    def __init__(self, name, team, game = None, players = [], activation = None):
         self.name = name
         self.team = team
         self.game = game
@@ -13,7 +13,7 @@ class Role():#will be inside a Player inside a Game, so have access to the game 
 
 class Wolf(Role):
     def __init__(self,game):
-        Role.__init__(self,name = 'wolf',team = 1,game = game,activation = 'night')
+        Role.__init__(self, name = 'wolf', team = 1, game = game, activation = 'night')
 
     async def activateRole(self):
         #create the vote
@@ -26,7 +26,7 @@ class Wolf(Role):
         if result[0] == 1:
             text = "You took too much time to decide and the day is rising, you didn't eat anyone this night"
         else:
-            text = "You eat "+result[1].member.display_name
+            text = "You eat " + result[1].member.display_name
         await self.channel.send(text)
 
 class Villager(Role):

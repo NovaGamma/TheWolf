@@ -1,8 +1,12 @@
-import discord
-import asyncio
-import random
-from roles import*
-from vote import*
+from inspect import getsourcefile
+import os.path as path, sys
+current_dir = path.dirname(path.abspath(getsourcefile(lambda:0)))
+sys.path.insert(0, current_dir[:current_dir.rfind(path.sep)])
+from init import*  # Replace "my_module" here with the module name.
+sys.path.pop(0)
+
+from TheWolf.roles import*
+from TheWolf.vote import*
 
 class Player():
     def __init__(self,member):
@@ -23,8 +27,7 @@ class Game():
     def __init__(self):
         Games.append(self)
 
-    async def createGame(self,creator):
-        global Roles
+    async def createGame(self,creator,Guild):
         self.creator = None
         self.participants = []
         self.alives = []
@@ -39,11 +42,11 @@ class Game():
         self.time = 0
         self.state = 'created'
         self.guildRoles = []
-        self.guildRoles.append(Guild.get_role(722171265372258378))#getting the alive role
-        self.guildRoles.append(Guild.get_role(722171307034148972))#getting the dead role
-        self.guildRoles.append(Guild.get_role(722171324293841020))#getting the spec role
+        self.guildRoles.append(Guild.get_role(774574939239743508))#getting the alive role
+        self.guildRoles.append(Guild.get_role(774574874970030080))#getting the dead role
+        self.guildRoles.append(Guild.get_role(774574700625657877))#getting the spec role
         overwrite = {self.guild.default_role:discord.PermissionOverwrite(read_messages = False)}
-        self.gameCategory = await self.guild.create_category(creator.display_name+"'s Game",overwrites = overwrite)#nGame will be increamented before
+        self.gameCategory = await self.guild.create_category(creator.display_name+"'s Game",overwrites = overwrite, position = 1)#nGame will be increamented before
 
     def getUser(self,id):
         for participant in self.participants:
@@ -188,11 +191,9 @@ class Game():
     async def addMayor(self,user):
         pass
 
-async def createGame(message):
-    global Guild
-    global Games
+async def createGame(message,Guild):
     game = Game()
-    await game.createGame(message.author)
+    await game.createGame(message.author,Guild)
     await game.addChannel("village")
     await game.addPeople(message.author,1)
     temp = await message.channel.send("To join "+game.gameCategory.name+" please check the validation emoji")
@@ -268,9 +269,9 @@ async def gameReaction(reaction,user,game):
         return
 
 async def resetBot():
-    spec = Guild.get_role(722171324293841020)
-    alive = Guild.get_role(722171265372258378)
-    dead = Guild.get_role(722171307034148972)
+    spec = Guild.get_role(774574700625657877)#spectator role
+    alive = Guild.get_role(774574939239743508)#alive role
+    dead = Guild.get_role(774574874970030080)#dead role
     for member in alive.members:
         await member.remove_roles(alive)
     for member in dead.members:
@@ -278,41 +279,8 @@ async def resetBot():
     for member in spec.members:
         await member.remove_roles(spec)
 
-client = discord.Client()
-
-@client.event
-async def on_ready():
-    global Guild
-    print('We have logged in as {0.user}'.format(client))
-    Guild = client.guilds[0]
-    print(Guild.me.guild_permissions.manage_roles)
-
 @client.event
 async def on_message(message):
-    global Guild
-    global time
-    if message.author == client.user:
-        return
-
-    if message.content.startswith('$delete'):
-        if message.author.guild_permissions.administrator:
-            if message.content.startswith('$delete bot'):
-                temp = message.content.split(' ')
-                number = int(temp[2])
-                messages = await message.channel.history(limit = number+1).flatten()
-                for m in messages:
-                    if m.author == client.user:
-                        await m.delete()
-                await message.delete()
-            else:
-                temp=message.content.split(' ')
-                number=int(temp[1])
-                messages = await message.channel.history(limit = number+1).flatten()
-                for m in messages:
-                    await m.delete()
-        else:
-            await message.delete()
-        return
 
     if message.content == "delete game":
         if message.author.guild_permissions.administrator:
@@ -342,18 +310,18 @@ async def on_message(message):
             await message.channel.send(message.author.mention + " You're already in a game, you can't create one",delete_after = 30)
             await message.delete()
 
-    if message.content.startswith("clock"):
-        time = int(message.content.split(" ")[1])
-        temp  = time
-        send = await message.channel.send(str(time)+' second left')
-        while time > 0:
-            await asyncio.sleep(1)
-            time -= 1
-            await send.edit(content = str(time)+' second left')
-        await send.edit(content = 'Finished !')
+    #if message.content.startswith("clock"):
+    #    time = int(message.content.split(" ")[1])
+    #    temp  = time
+    #    send = await message.channel.send(str(time)+' second left')
+    #    while time > 0:
+    #        await asyncio.sleep(1)
+    #        time -= 1
+    #        await send.edit(content = str(time)+' second left')
+    #    await send.edit(content = 'Finished !')
 
-    if message.content == "stop":
-        time = 0
+    #if message.content == "stop":
+    #    time = 0
 
 @client.event
 async def on_reaction_add(reaction,user):
@@ -397,10 +365,3 @@ async def on_reaction_remove(reaction,user):
     for game in Games:#part that will check if the received message belong to a message sent in a game to be treated by a dedicated function
         if reaction.message.channel.category.id == game.gameCategory.id:
             await gameReaction(reaction,user,game)
-
-Games = []
-time = 0
-Roles = []
-
-
-client.run('NzE5NjUxNjc3MzU5MDQ2NzE3.XueeWQ.KrJRZbLwHH3a6NfSgj4wIbJsKeA')
